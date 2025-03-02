@@ -11,3 +11,6 @@
     -    Open a web browser and navigate to http://localhost:8000.
 
      -   You should see the HTML content "Welcome to the Simple Java HTTP Server".
+     
+- chmod +x iamthedriver.sh
+- ./iamthedriver.sh
