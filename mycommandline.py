@@ -63,6 +63,8 @@ class Mycommandline(Model):
         myprogram=""
         if matermin == "rb":
             myprogram="ruby"
+        if matermin == "java":
+            myprogram="java"
         if matermin == "php":
             myprogram="php"
         if matermin == "py":
