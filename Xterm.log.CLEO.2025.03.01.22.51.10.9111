@@ -1,0 +1,5 @@
+c'est mon script
+  File "./heytrain.py", line 3
+    while True:
+    ^
+IndentationError: expected an indented block

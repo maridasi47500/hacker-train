@@ -1,0 +1,5 @@
+c'est mon script
+  File "./yeah.py", line 1
+    try: while True: # User input to set motor speed input_str = input("SBC_Speed ="8") try: speed = int(input_str) if 0 <= speed <= 100: pwm.ChangeDutyCycle()
+         ^
+SyntaxError: invalid syntax

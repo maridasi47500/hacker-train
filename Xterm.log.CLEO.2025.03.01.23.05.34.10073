@@ -1,0 +1,5 @@
+c'est mon script
+Traceback (most recent call last):
+  File "./winner.py", line 1, in <module>
+    myscriptrailway.py
+NameError: name 'myscriptrailway' is not defined

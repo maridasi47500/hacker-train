@@ -1,0 +1,9 @@
+c'est mon script
+Train is departing the station...
+SBC_Speed = 1 50
+Current speed: 50.00 mph
+Accelerating...
+SBC_Speed = 100
+Current speed: 100.00 mph
+Train has reached 100 mph. Maintaining speed for a few seconds...
+SBC_Speed = 

@@ -1,0 +1,5 @@
+uploads/
+
+__pycache__/
+monscript/lancer_**
+myFileDb.db

@@ -1,38 +1,37 @@
 # coding=utf-8
 import sqlite3
+import os
+from fichier import Fichier
 import sys
 import re
-from fichier import Fichier
 from model import Model
-class Myscript(Model):
+class Mycommandline(Model):
     def __init__(self):
         self.con=sqlite3.connect(self.mydb)
         self.con.row_factory = sqlite3.Row
         self.cur=self.con.cursor()
-        self.cur.execute("""create table if not exists myscript(
+        self.cur.execute("""create table if not exists mycommandline(
         id integer primary key autoincrement,
-        name text,
-            content text,
-            monscript text
+        name text
                     );""")
         self.con.commit()
         #self.con.close()
     def getall(self):
-        self.cur.execute("select * from myscript")
+        self.cur.execute("select * from mycommandline")
 
         row=self.cur.fetchall()
         return row
     def deletebyid(self,myid):
 
-        self.cur.execute("delete from myscript where id = ?",(myid,))
+        self.cur.execute("delete from mycommandline where id = ?",(myid,))
         job=self.cur.fetchall()
         self.con.commit()
         return None
     def getbyid(self,myid):
-        self.cur.execute("select * from myscript where id = ?",(myid,))
+        self.cur.execute("select * from mycommandline where id = ?",(myid,))
         row=dict(self.cur.fetchone())
         print(row["id"], "row id")
-        job=self.cur.fetchone()
+        job=self.cur.fetchall()
         return row
     def create(self,params):
         print("ok")
@@ -48,22 +47,28 @@ class Myscript(Model):
                   myhash[x]=str(params[x].decode())
                 except:
                   myhash[x]=str(params[x])
-
-        myid=None
-        contentmonscript=Fichier("./uploads/",myhash["monscript"]).lire()
-        myhash["monscript"]=Fichier("./uploads/",myhash["monscript"]).lire()
         print("M Y H A S H")
         print(myhash,myhash.keys())
+        myid=None
         try:
-          self.cur.execute("insert into myscript (name,content,monscript) values (:name,:content,:monscript)",myhash)
+          self.cur.execute("insert into mycommandline (name) values (:name)",myhash)
           self.con.commit()
           myid=str(self.cur.lastrowid)
         except Exception as e:
           print("my error"+str(e))
         azerty={}
-        azerty["myscript_id"]=myid
-        azerty["notice"]="votre myscript a été ajouté"
-        monfichier=Fichier("./monscript",params["name"]).ecrire(contentmonscript)
+        azerty["mycommandline_id"]=myid
+        azerty["notice"]="votre mycommandline a été ajouté"
+        matermin=params["name"].split(".")[-1]
+        myprogram=""
+        if matermin == "rb":
+            myprogram="ruby"
+        if matermin == "php":
+            myprogram="php"
+        if matermin == "py":
+            myprogram="python3"
+        monfichier=Fichier("./monscript","lancer_"+params["name"]+".sh").ecrire("""xterm -l -hold -e "cd {myroot}/monscript && echo \\\"c'est mon script\\\" && bash -l -c \\\"{program} ./{name}\\\""
+                """.format(myroot=os.getcwd(), name=params['name'],program=myprogram))
         return azerty
 
 
