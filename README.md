@@ -19,3 +19,5 @@
 - mes scripts:departure_table.py  iamthedriver.sh     Railways.py            train_speedometer.py
 hackertrain.py      myscriptrailway.py  SimpleHttpServer.java
 
+- hacker  telecommunication : chat app, email app
+
